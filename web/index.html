@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Storyscene — a local writing studio for stories, visual scenes and considered variations.">
+  <title>Storyscene · Your story, in perspective</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='13' fill='%23234e43'/%3E%3Cpath d='M10 13q8-3 14 2q6-5 14-2v23q-8-3-14 1q-6-4-14-1zM24 15v22' stroke='%23f5e9ca' fill='none' stroke-width='2.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="app-header">
+    <a class="brand" href="#" aria-label="Storyscene home"><span class="brand-icon" data-icon="book"></span><span>Storyscene<small>THE AUTHOR'S STUDIO</small></span></a>
+    <nav class="tabs" aria-label="Main navigation"><button class="active" data-tab="workspace"><span data-icon="layout"></span>Workspace</button><button data-tab="versions"><span data-icon="branch"></span>Versions</button></nav>
+    <div class="header-end"><span id="save-status" class="save-status" role="status">Starting…</span><button id="settings-button" class="icon-button" aria-label="AI settings" title="AI settings"><span data-icon="sliders"></span></button><button id="help-button" class="icon-button" aria-label="How to use Storyscene" title="Quick guide"><span data-icon="help"></span></button></div>
+  </header>
+  <div class="project-bar">
+    <div class="project-meta"><span class="eyebrow">PROJECT</span><button id="project-menu" class="project-title">Loading… <span data-icon="chevron"></span></button><span id="version-name" class="version-label">Original story</span></div>
+    <div class="project-actions"><button id="import-button" class="quiet-button"><span data-icon="upload"></span>Import</button><button id="export-button" class="quiet-button"><span data-icon="download"></span>Export</button><div class="mode-switch" aria-label="AI mode"><button data-mode="check">Check-in</button><button data-mode="edit" class="active">Edit <span class="mode-dot"></span></button></div></div>
+  </div>
+  <main id="workspace">
+    <div id="mode-banner" class="mode-banner"><span data-icon="sparkles"></span><span id="mode-explanation">Make room for another possibility. Changes stay yours to accept.</span><button id="engine-button" class="engine-tag">Sample walkthrough <span data-icon="chevron"></span></button></div>
+    <div id="review-bar" class="review-bar" hidden></div>
+    <div id="studio">
+      <section id="manuscript-panel" aria-label="Manuscript">
+        <div class="pane-heading"><div><span class="eyebrow">YOUR WORDS</span><h1>Manuscript</h1></div><span id="word-count" class="muted"></span></div>
+        <div class="format-toolbar" role="toolbar" aria-label="Text formatting">
+          <button data-format="bold" title="Bold" aria-label="Bold"><b>B</b></button><button data-format="italic" title="Italic" aria-label="Italic"><i>I</i></button><button data-format="underline" title="Underline" aria-label="Underline"><u>U</u></button><span class="toolbar-divider"></span>
+          <select id="text-style" aria-label="Text style"><option value="p">Body text</option><option value="h2">Heading</option><option value="blockquote">Quotation</option></select>
+          <button data-format="hiliteColor" title="Highlight selection" aria-label="Highlight selection"><span data-icon="highlight"></span></button><button data-format="removeFormat" title="Clear formatting" aria-label="Clear formatting"><span data-icon="eraser"></span></button>
+          <button id="reference-selection" class="text-tool" title="Save selected text as a reusable reference"><span data-icon="pin"></span>Reference</button>
+        </div>
+        <div class="manuscript-scroll" id="manuscript-scroll"><div id="manuscript" spellcheck="true"></div></div>
+        <footer class="manuscript-footer"><span class="legend-dot source"></span>Source <span class="legend-dot inherited"></span>Inherited <span class="legend-dot impact"></span>Potential impact <button id="annotations-toggle" title="Toggle text overlays">Hide</button></footer>
+      </section>
+      <div id="splitter" role="separator" aria-label="Resize manuscript and scenes" aria-orientation="vertical" tabindex="0"><span></span></div>
+      <section id="visual-panel" aria-label="Visual story workspace">
+        <div class="pane-heading"><div><span class="eyebrow">THE BIG PICTURE</span><h1>Story canvas <span id="scene-count"></span></h1></div><div class="canvas-actions"><button id="structure-button" class="quiet-button"><span data-icon="layers"></span>Structure</button><button id="refs-toggle" class="icon-button active" title="Toggle saved references" aria-label="Toggle saved references"><span data-icon="pin"></span></button></div></div>
+        <div class="canvas-toolbar"><div class="tool-group"><button id="select-tool" class="active" title="Select tool" aria-label="Select tool"><span data-icon="cursor"></span></button><button id="pen-tool" title="Draw a circle around a character or passage" aria-label="Pen tool"><span data-icon="pen"></span></button><button id="clear-ink" title="Clear ink annotations" aria-label="Clear ink"><span data-icon="eraser"></span></button></div><span class="ink-legend"><i></i>You <i class="ai"></i>AI</span><button id="links-toggle" class="quiet-button" aria-pressed="false"><span data-icon="link"></span>Dependencies</button><span class="toolbar-spacer"></span><button id="zoom-out" class="icon-button" aria-label="Zoom out">−</button><span id="zoom-value">100%</span><button id="zoom-in" class="icon-button" aria-label="Zoom in">+</button></div>
+        <div id="clarification" class="clarification" hidden></div>
+        <div class="visual-body">
+          <div class="board-scroll" id="board-scroll"><div id="story-board"></div></div>
+          <aside id="references-panel" aria-label="Saved references"><div class="references-heading"><span data-icon="pin"></span><h2>Saved references</h2><span id="reference-count">0</span></div><p class="helper">A selection, with its meaning attached.</p><div id="reference-list"></div><div class="reference-tip"><span data-icon="cursor"></span><p>Circle a character or select a passage.<br>Clarify once. Reuse it here.</p></div><button id="new-reference" class="dashed-button">+ Save current scene</button><div id="character-tray"></div></aside>
+        </div>
+        <div id="findings-panel" class="findings-panel" hidden></div>
+      </section>
+    </div>
+    <section id="composer" aria-label="Request composer"><div class="composer-top"><span class="eyebrow">YOUR NEXT MOVE</span><div id="context-chips"></div><button id="scope-button" class="scope-button">Choose scope <span data-icon="chevron"></span></button><span id="request-status" class="request-status">Prepare a request</span></div><div class="composer-bottom"><span data-icon="sparkles" class="composer-icon"></span><textarea id="prompt" rows="2" placeholder="Describe what you want to explore…"></textarea><button id="execute-button" class="primary-button">Execute <span data-icon="arrow"></span></button></div><div class="composer-foot"><span id="composer-note">Select, draw or drag a reference here. Nothing runs until you click Execute.</span><button id="clear-request">Clear request</button></div></section>
+    <svg id="ink-layer" xmlns="http://www.w3.org/2000/svg" aria-label="Drawing layer"></svg>
+  </main>
+  <section id="versions-view" hidden><div class="versions-header"><div><span class="eyebrow">A STORY CAN GO MANY WAYS</span><h1>Your versions</h1><p>Explore a different path. Every earlier draft stays within reach.</p></div><button id="new-variant" class="primary-button"><span data-icon="branch"></span>Create variant</button></div><div class="version-layout"><div id="version-graph"></div><aside id="version-detail"></aside></div></section>
+</div>
+<div id="toast" role="status" hidden></div>
+<dialog id="dialog"><form method="dialog" class="dialog-shell"><button class="dialog-close icon-button" aria-label="Close dialog" value="cancel">×</button><div id="dialog-content"></div></form></dialog>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

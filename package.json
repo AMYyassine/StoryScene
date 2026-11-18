@@ -1,0 +1,1 @@
+{"name":"storyscene-local","private":true,"version":"1.0.0","type":"module","scripts":{"dev":"python run.py --preview","check":"node --check web/app.js"}}
